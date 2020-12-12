@@ -1,34 +1,21 @@
 <template>
   <div>
-    <form @submit.prevent="salvarForm" method="post">
-      <input type="text" v-model="nome">
-      <b-button variant="primary" type="submit">Salvar</b-button>
-       <b-button variant="danger" @click="mostrarNome">Mostrar Nome</b-button>
-    </form>
-    <h1>Nome: {{nome}}</h1>
+    <Navbar />
   </div>
 </template>
 
 <script>
-
+import Navbar from "./components/Navbar";
 export default {
-  name: 'App',
-  data(){
-    return{
-      nome: ''
-    }
+  name: "App",
+  components: {
+    Navbar
   },
-  methods:{
-      salvarForm(){
-        alert(this.nome)
-      },
-      mostrarNome(){
-        alert(`O nome digitado é ${this.nome}`)
-      }
-    }
+  data() {
+    return {};
+  }
 }
 </script>
 
 <style>
-
 </style>
