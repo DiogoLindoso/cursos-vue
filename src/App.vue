@@ -1,18 +1,22 @@
 <template>
   <div>
     <Navbar />
+    <FormCadastro />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"
+import FormCadastro from "./components/FormCadastro"
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    FormCadastro
   },
   data() {
-    return {};
+    return {
+    };
   }
 }
 </script>
