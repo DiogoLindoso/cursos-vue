@@ -2,8 +2,8 @@
   <div>
     <form @submit.prevent="salvarForm" method="post">
       <input type="text" v-model="nome">
-      <button type="submit">Salvar</button>
-      <button type="button" @click="mostrarNome">Mostrar Nome</button>
+      <b-button variant="primary" type="submit">Salvar</b-button>
+       <b-button variant="danger" @click="mostrarNome">Mostrar Nome</b-button>
     </form>
     <h1>Nome: {{nome}}</h1>
   </div>
