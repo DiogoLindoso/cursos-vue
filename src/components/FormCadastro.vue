@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import axios from "axios"
-const Compress = require("compress.js")
+import axios from "axios";
+const Compress = require("compress.js");
 
 export default {
   name: "FormCadastro",
@@ -28,40 +28,56 @@ export default {
     return {
       compress: new Compress(),
       form: {
-        nome: '',
-        url: '',
-        capa: '',
-        descricao: ''
+        nome: "",
+        url: "",
+        capa: "",
+        descricao: ""
       },
       file: null
-    }
+    };
   },
   computed: {
     abrirModal: {
       get() {
-        return this.$store.state.modalCadastro
+        return this.$store.state.modalCadastro;
       },
       set(v) {
-        this.$store.commit("abrirModalCadastro", v)
+        this.$store.commit("abrirModalCadastro", v);
       }
     }
   },
   methods: {
     selecionaCapa(evt) {
-      const files = [...evt.target.files]
+      const files = [...evt.target.files];
       this.compress
         .compress(files, {
           size: 4,
-          quality: .75
+          quality: 0.75
         })
         .then(data => {
-          this.form.capa = data[0].data
-        })
+          this.form.capa = data[0].data;
+        });
     },
     onSubmit() {
-      this.compress
-      axios.post("http://laravel-vue-novo.com/api/cursos", this.form)
+      axios
+        .post("http://laravel-vue-novo.com/api/cursos", this.form)
+        .then(({ data }) => {
+          this.$store.commit("adicionarCurso", data);
+          this.$store.commit("abrirModalCadastro", false);
+          this.$swal({
+            icon: "success",
+            title: "Sucesso",
+            text: "Curso cadastrado com sucesso"
+          });
+        })
+        .catch(() => {
+          this.$swal({
+            icon: "error",
+            title: "Ops",
+            text: "Erro ao cadastrar curso"
+          });
+        });
     }
   }
-}
+};
 </script>

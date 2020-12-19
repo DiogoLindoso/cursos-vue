@@ -5,13 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    modalCadastro: false
+    modalCadastro: false,
+    cursos: []
   },
   mutations: {
-    abrirModalCadastro (state,value) {
+    abrirModalCadastro(state, value) {
       state.modalCadastro = value
+    },
+    definirCursos(state, value) {
+      state.cursos = value
+    },
+    adicionarCurso(state, value) {
+      state.cursos.push(value)
     }
   }
 })
 
-  
